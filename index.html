@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌸 Feliz Día de las Flores Amarillas — Tía Yulissa ✨</title>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@500;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  
+  body {
+    background: radial-gradient(circle at center, #2d1b36 0%, #150d1a 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Comfortaa', cursive, sans-serif;
+    overflow: hidden;
+    color: #fff;
+    position: relative;
+  }
+
+  /* Contenedor para la lluvia de flores */
+  #flower-rain {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .falling-flower {
+    position: absolute;
+    top: -50px;
+    user-select: none;
+    animation: fall linear infinite;
+    filter: drop-shadow(0 0 6px rgba(255, 230, 0, 0.7));
+  }
+
+  @keyframes fall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+    100% { transform: translateY(105vh) rotate(360deg); opacity: 0.2; }
+  }
+
+  /* Tarjeta principal */
+  .card {
+    background: rgba(30, 20, 40, 0.88);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 35px 30px;
+    max-width: 650px;
+    width: 90%;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.35), 0 0 10px rgba(255, 105, 180, 0.3);
+    border: 3px solid #ffe600;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+    animation: animePop 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  @keyframes animePop {
+    from { transform: scale(0.8) translateY(30px); opacity: 0; }
+    to { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  h1 {
+    color: #fff263;
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+    text-shadow: 0 0 12px rgba(255, 242, 99, 0.8), 0 0 5px #ff69b4;
+    font-weight: 700;
+  }
+
+  p {
+    color: #e2d5f8;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 18px;
+    text-align: left;
+  }
+
+  p.center { text-align: center; }
+
+  /* Botones */
+  .btn {
+    background: linear-gradient(135deg, #ffe600, #ffb703);
+    color: #1a002c;
+    border: none;
+    padding: 14px 38px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 0 15px rgba(255, 230, 0, 0.6);
+    transition: all 0.3s ease;
+    font-family: 'Comfortaa', cursive, sans-serif;
+  }
+
+  .btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 0 25px rgba(255, 230, 0, 0.9);
+    background: linear-gradient(135deg, #fff263, #ffa200);
+  }
+
+  .hidden { display: none; }
+
+  /* Estilo Terminal */
+  .terminal-box {
+    background: #0d0714;
+    border: 2px solid #00f5d4;
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 0 12px rgba(0, 245, 212, 0.4);
+    margin-top: 10px;
+  }
+
+  .mono {
+    font-family: 'Press Start 2P', monospace;
+    color: #00f5d4;
+    font-size: 0.75rem;
+    line-height: 1.6;
+    text-shadow: 0 0 5px #00f5d4;
+  }
+
+  /* Animación de la Mototaxi cargando flores */
+  .mototaxi-track {
+    width: 100%;
+    height: 110px;
+    position: relative;
+    overflow: hidden;
+    margin: 15px 0;
+    border-bottom: 3px dashed #ffb703;
+  }
+
+  .mototaxi-container {
+    position: absolute;
+    bottom: 5px;
+    left: -150px;
+    display: flex;
+    align-items: flex-end;
+    animation: driveMototaxi 4s ease-in-out infinite;
+  }
+
+  @keyframes driveMototaxi {
+    0% { left: -120px; }
+    50% { left: calc(50% - 40px); }
+    100% { left: 105%; }
+  }
+
+  .mototaxi {
+    font-size: 65px;
+    filter: drop-shadow(0 0 10px rgba(255, 230, 0, 0.8));
+    animation: mototaxiBounce 0.3s infinite alternate;
+  }
+
+  @keyframes mototaxiBounce {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-4px); }
+  }
+
+  .mototaxi-flowers {
+    font-size: 30px;
+    margin-right: -25px;
+    margin-bottom: 25px;
+    z-index: 2;
+    animation: flowerWiggle 0.6s infinite alternate;
+  }
+
+  @keyframes flowerWiggle {
+    0% { transform: rotate(-5deg); }
+    100% { transform: rotate(10deg); }
+  }
+
+  /* Ramo de Flores con crecimiento animado */
+  .bouquet-container {
+    margin: 20px auto;
+    position: relative;
+    width: 220px;
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: bouquetGlow 2.5s infinite alternate ease-in-out;
+  }
+
+  @keyframes bouquetGlow {
+    0% { filter: drop-shadow(0 0 15px rgba(255, 230, 0, 0.5)); }
+    100% { filter: drop-shadow(0 0 30px rgba(255, 230, 0, 0.9)); }
+  }
+
+  .bouquet-wrapper {
+    position: relative;
+    font-size: 85px;
+    line-height: 1;
+    z-index: 2;
+    transform-origin: bottom center;
+    animation: growPlant 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+  }
+
+  .bouquet-flowers {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 5px;
+    font-size: 50px;
+    z-index: 1;
+    transform-origin: bottom center;
+    animation: growFlowers 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s forwards, flowersPulse 1.8s infinite alternate 1.8s;
+  }
+
+  @keyframes growPlant {
+    0% { transform: scale(0) translateY(50px); opacity: 0; }
+    100% { transform: scale(1) translateY(0); opacity: 1; }
+  }
+
+  @keyframes growFlowers {
+    0% { transform: translateX(-50%) scale(0) translateY(30px); opacity: 0; }
+    100% { transform: translateX(-50%) scale(1) translateY(0); opacity: 1; }
+  }
+
+  @keyframes flowersPulse {
+    from { transform: translateX(-50%) translateY(0) scale(1); }
+    to { transform: translateX(-50%) translateY(-8px) scale(1.1); }
+  }
+
+  .sparkles {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+
+  .sparkle {
+    position: absolute;
+    font-size: 20px;
+    animation: sparkleTwinkle 1.5s infinite alternate;
+  }
+
+  .sp-1 { top: 10%; left: 10%; animation-delay: 0.2s; }
+  .sp-2 { top: 15%; right: 10%; animation-delay: 0.6s; }
+  .sp-3 { bottom: 25%; left: 15%; animation-delay: 1s; }
+  .sp-4 { bottom: 20%; right: 15%; animation-delay: 0.4s; }
+
+  @keyframes sparkleTwinkle {
+    0% { opacity: 0.3; transform: scale(0.8); }
+    100% { opacity: 1; transform: scale(1.3); }
+  }
+
+  .fade { animation: animePop 0.6s ease; }
+</style>
+</head>
+<body>
+
+<!-- Lluvia de flores de fondo -->
+<div id="flower-rain"></div>
+
+<!-- PANTALLA 1 -->
+<div class="card" id="s1">
+  <h1>🌻 Feliz Día de las Flores Amarillas ✨</h1>
+  <p class="center mono" style="color:#ff9e00; margin-bottom:25px;">> [DESTINATARIO]: Tia_Yulissa_</p>
+  <button class="btn" onclick="goNext('s2')">Ingresar ✨ ➡️</button>
+</div>
+
+<!-- PANTALLA 2 -->
+<div class="card hidden" id="s2">
+  <h1>🌼 Para ti, Tía Yulissa ✨</h1>
+  <p>Tía linda, aunque no estemos juntos hoy, nada me impide enviarte este pequeño detalle hecho a mano. Perdóname la demora, pero quería preparar algo único e increíble solo para ti. 🌻💛</p>
+  <p>Eres una persona alegre, trabajadora y muy especial en mi vida. ¡Te mereces todas las flores amarillas del mundo y mucha felicidad!</p>
+  <button class="btn" onclick="goNext('s3')">Siguiente ➡️</button>
+</div>
+
+<!-- PANTALLA 3 -->
+<div class="card hidden" id="s3">
+  <h1>🛺 ¡Enviando el Pedido Especial! 💨</h1>
+  <p>Pedí un flete directo en mototaxi para llevarte todas las flores amarillas hasta tu puerta sin falta. 🛺✨</p>
+
+  <!-- Animación de la Mototaxi cargada de flores -->
+  <div class="mototaxi-track">
+    <div class="mototaxi-container">
+      <div class="mototaxi-flowers">🌻🌼🌻</div>
+      <div class="mototaxi">🛺</div>
+    </div>
+  </div>
+
+  <div class="terminal-box">
+    <p class="mono">$ sudo ./mototaxi_delivery --para Tia_Yulissa</p>
+  </div>
+  <button class="btn" onclick="goNext('s4')">Siguiente ➡️</button>
+</div>
+
+<!-- PANTALLA 4 -->
+<div class="card hidden" id="s4">
+  <h1>🌿 Tus Flores Amarillas 🌻</h1>
+  <p class="center">Estas flores simbolizan la buena vibración, el cariño verdadero y toda la luz que transmites siempre. ¡Que tengas un día grandioso! 🌼✨</p>
+  <button class="btn" onclick="goNext('s5')">Último paso ➡️</button>
+</div>
+
+<!-- PANTALLA 5 -->
+<div class="card hidden" id="s5">
+  <h1>🌻 ¡FELIZ DÍA DE LAS FLORES AMARILLAS! 🌻</h1>
+
+  <!-- Ramo de Flores con Animación de Crecimiento -->
+  <div class="bouquet-container">
+    <div class="sparkles">
+      <span class="sparkle sp-1">✨</span>
+      <span class="sparkle sp-2">⭐</span>
+      <span class="sparkle sp-3">✨</span>
+      <span class="sparkle sp-4">🌟</span>
+    </div>
+    <div class="bouquet-flowers">🌻🌼🌻</div>
+    <div class="bouquet-wrapper">💐</div>
+  </div>
+
+  <p class="center" style="font-size:1.15rem; color:#fff263; margin-top:15px;">
+    ¡Llegó la mototaxi con tu regalo digital! 🛺💛<br>
+    Espero que te encante esta sorpresa. ¡Te mando un abrazo enorme!
+  </p>
+  <p class="center mono" style="color:#00f5d4; margin-top:25px;">— con todo mi cariño, tu sobrino Stefano (UwU)</p>
+</div>
+
+<script>
+  function goNext(id){
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(c){ c.classList.add('hidden'); });
+    var next = document.getElementById(id);
+    next.classList.remove('hidden');
+    next.classList.add('fade');
+  }
+
+  // Script para generar lluvia constante de flores
+  function createFlowerRain() {
+    const rainContainer = document.getElementById('flower-rain');
+    const flowers = ['🌻', '🌼', '✨', '⭐', '💛', '🌸'];
+
+    setInterval(() => {
+      const flower = document.createElement('div');
+      flower.classList.add('falling-flower');
+      flower.innerText = flowers[Math.floor(Math.random() * flowers.length)];
+      flower.style.left = Math.random() * 100 + 'vw';
+      
+      const size = Math.random() * 20 + 15;
+      flower.style.fontSize = size + 'px';
+      
+      const duration = Math.random() * 4 + 4;
+      flower.style.animationDuration = duration + 's';
+
+      rainContainer.appendChild(flower);
+
+      setTimeout(() => {
+        flower.remove();
+      }, duration * 1000);
+    }, 250);
+  }
+
+  createFlowerRain();
+</script>
+</body>
+</html>
